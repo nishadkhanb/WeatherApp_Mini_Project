@@ -58,7 +58,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   colors: [Colors.transparent, Colors.black54],
                 ),
               ),
-              child: SingleChildScrollView(
+              child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +90,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             borderSide: BorderSide.none,
                           ),
                           prefixIcon:
-                              const Icon(Icons.search, color: Colors.white),
+                          const Icon(Icons.search, color: Colors.white),
                         ),
                       ),
                     ),
@@ -116,12 +116,22 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    if (_weatherData != null) ...[
-                      _buildWeatherInfoCard(),
-                      _buildLocationInfoCard(),
-                      _buildConditionCard(),
-                      _buildAirQualityCard(),
-                    ],
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            if (_weatherData != null) ...[
+                              _buildWeatherInfoCard(),
+                              _buildLocationInfoCard(),
+                              _buildConditionCard(),
+                              _buildAirQualityCard(),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
